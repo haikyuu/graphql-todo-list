@@ -15,7 +15,7 @@ services:
     build:
       context: ./db
     env_file: config.env
-    image: todollist-db
+    image: todolist-db
     ports:
       - 5431:5432
 
