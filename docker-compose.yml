@@ -1,0 +1,21 @@
+version: '3'
+services:
+  api:
+    build:
+      context: ./api
+    image: todolist-api
+    env_file: config.env
+    volumes:
+      - ./api:/usr/src/api
+    ports:
+      - 3000:3000
+    links:
+      - db:db
+  db:
+    build:
+      context: ./db
+    env_file: config.env
+    image: todollist-db
+    ports:
+      - 5431:5432
+
