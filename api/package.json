@@ -11,6 +11,9 @@
     "nodemon": "^1.12.1"
   },
   "scripts": {
-	"serve": "nodemon index.js --exec babel-node"
-	}
+    "serve": "nodemon index.js --exec babel-node"
+  },
+  "dependencies": {
+    "express": "^4.16.1"
+  }
 }
