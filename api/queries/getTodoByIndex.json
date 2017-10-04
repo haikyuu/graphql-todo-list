@@ -1,0 +1,3 @@
+{
+  "query": "{todo(id: 0){id text priority}}"
+}

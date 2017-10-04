@@ -1,4 +1,5 @@
 import { makeExecutableSchema } from 'graphql-tools';
+import Todo from "../business/todo"
 
 const typeDefs = [`
 enum Priority {
@@ -8,13 +9,14 @@ enum Priority {
 }
 type Todo {
 id: Int!
-      text: String
+      text: String!
       priority: Priority
       dueDate: Int #timestamp
 }
 
 type Query {
 todos: [Todo]
+         todo(id: Int!): Todo
 }
 
 schema {
@@ -24,18 +26,8 @@ query: Query
 
 const resolvers = {
 Query: {
-todos: () => ([
-	      {
-id: 1,
-text: "rock the assignment",
-priority: "HIGH"
-},
-{
-id: 2,
-text: "rock the interview",
-priority: "HIGH"
-}
-]),
+todos: async (_, args, ctx) => Todo.loadAll(ctx, args),
+todo: async (_, args, ctx) => Todo.load(ctx, args)
   },
   }
 
