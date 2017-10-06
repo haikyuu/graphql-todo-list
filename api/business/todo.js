@@ -1,5 +1,8 @@
 //@flow
+import TodoDB from "../db/queryBuilders/todo";
+
 type Priority = "HIGH" | "MEDIUM" | "LOW";
+
 const mockedTodos = [
   {
     id: 1,
@@ -27,14 +30,14 @@ class Todo {
   }
 
   static async load(ctx, args) {
-    const data = mockedTodos[args.id];
+    const data = await TodoDB.getById(args.id);
     if (!data) return null;
 
     return new Todo(data);
   }
 
   static async loadAll(ctx, args) {
-    const data = mockedTodos;
+    const data = await TodoDB.getAll();
 
     return data.map(row => new Todo(row));
   }
