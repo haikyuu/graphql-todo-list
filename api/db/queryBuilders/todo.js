@@ -30,14 +30,11 @@ class todo {
   }
 
   static async editOne(id: string, todo: ?Todo): Promise<Todo> {
-    console.log("todo: ", todo);
-    console.log("id: ", id);
     return db("Todos")
       .where("id", id)
       .update(todo || {})
       .returning("*")
       .then(data => data.length && data[0]);
-    // .then(ids => ids.length && ids[0]);
   }
 }
 
