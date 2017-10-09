@@ -36,6 +36,13 @@ class todo {
       .returning("*")
       .then(data => data.length && data[0]);
   }
+
+  static async deleteOne(id: string): Promise<number> {
+    return db("Todos")
+      .where("id", id)
+      .del()
+      .then(numberOfAffectedRows => numberOfAffectedRows);
+  }
 }
 
 export default todo;

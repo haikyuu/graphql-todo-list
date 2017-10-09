@@ -60,6 +60,14 @@ class Todo {
     return editedTodo;
   }
 
+  static async DeleteTodo(ctx, { id }) {
+    if (!id) throw new Error("Cannot delete a todo without its id, sorry :(");
+
+    const numberOfAffectedRows = await TodoDB.deleteOne(id);
+
+    return numberOfAffectedRows;
+  }
+
   static async loadAll(ctx, args) {
     const data = await TodoDB.getAll();
     await ctx.dataLoaders.todo.primeLoaders(data);

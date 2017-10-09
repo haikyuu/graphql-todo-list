@@ -33,6 +33,7 @@ const typeDefs = [
   type Mutation {
     addTodo(todo: AddTodoInput!): String
     editTodo(id: String!, todo: EditTodoInput): Todo
+    deleteTodo(id: String!): Int
   }
   schema {
     query: Query
@@ -48,7 +49,8 @@ const resolvers = {
   },
   Mutation: {
     addTodo: async (_, args, ctx) => Todo.AddTodo(ctx, args),
-    editTodo: async (_, args, ctx) => Todo.EditTodo(ctx, args)
+    editTodo: async (_, args, ctx) => Todo.EditTodo(ctx, args),
+    deleteTodo: async (_, args, ctx) => Todo.DeleteTodo(ctx, args)
   }
 };
 
