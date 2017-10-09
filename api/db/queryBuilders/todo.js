@@ -21,6 +21,24 @@ class todo {
   static async getAll() {
     return db.select().table("Todos");
   }
+  static async addOne(todo: Todo): Promise<string> {
+    const id = uuidv4();
+    return db
+      .insert(Object.assign(todo, { id }), "id")
+      .into("Todos")
+      .then(ids => ids.length && ids[0]);
+  }
+
+  static async editOne(id: string, todo: ?Todo): Promise<Todo> {
+    console.log("todo: ", todo);
+    console.log("id: ", id);
+    return db("Todos")
+      .where("id", id)
+      .update(todo || {})
+      .returning("*")
+      .then(data => data.length && data[0]);
+    // .then(ids => ids.length && ids[0]);
+  }
 }
 
-export default Todo;
+export default todo;
