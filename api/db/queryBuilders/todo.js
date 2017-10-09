@@ -30,7 +30,7 @@ class todo {
       );
   }
 
-  static async getAll() {
+  static async getAll(): Promise<Array<Todo>> {
     return db.select().table("Todos");
   }
   static async addOne(todo: Todo): Promise<string> {

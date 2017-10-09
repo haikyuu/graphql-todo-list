@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.string("text");
     table.enu("priority", ["HIGH", "MEDIUM", "LOW"]);
     table.date("dueDate");
+    table.boolean("completed").defaultTo(false);
   });
 };
 

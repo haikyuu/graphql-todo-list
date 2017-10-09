@@ -13,6 +13,7 @@ const typeDefs = [
     text: String!
     priority: Priority
     dueDate: String
+    completed: Boolean!
   }
 
   type Query {

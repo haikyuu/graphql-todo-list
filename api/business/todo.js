@@ -2,7 +2,7 @@
 import TodoDB from "../db/queryBuilders/todo";
 import DataLoader from "dataloader";
 
-import type { Priority, todo } from "../flowTypes";
+import type { Priority, Todo } from "../flowTypes";
 const mockedTodos = [
   {
     id: "1",
@@ -16,11 +16,12 @@ const mockedTodos = [
   }
 ];
 
-class Todo {
+class todo {
   id: string;
   text: string;
   priority: Priority;
   dueDate: string;
+  completed: boolean;
 
   static getLoaders() {
     const getById = new DataLoader(ids => TodoDB.getByIds(ids));
@@ -29,11 +30,12 @@ class Todo {
     };
     return { getById, primeLoaders };
   }
-  constructor(data: todo) {
+  constructor(data: Todo) {
     this.id = data.id;
     this.text = data.text;
     this.priority = data.priority;
     this.dueDate = data.dueDate;
+    this.completed = data.completed;
   }
 
   static async load(ctx, args) {
@@ -41,7 +43,7 @@ class Todo {
     const data = await ctx.dataLoaders.todo.getById.load(args.id);
     if (!data) return null;
 
-    return new Todo(data);
+    return new todo(data);
   }
 
   static async AddTodo(ctx, { todo }) {
@@ -72,8 +74,8 @@ class Todo {
     const data = await TodoDB.getAll();
     await ctx.dataLoaders.todo.primeLoaders(data);
 
-    return data.map(row => new Todo(row));
+    return data.map(row => new todo(row));
   }
 }
 
-export default Todo;
+export default todo;

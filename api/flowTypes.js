@@ -4,5 +4,6 @@ export type todo = {
   id: number,
   text: string,
   dueDate?: string,
-  priority?: Priority
+  priority?: Priority,
+  completed: boolean
 };
