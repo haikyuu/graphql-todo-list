@@ -9,10 +9,10 @@ module.exports = {
       database: "todolistdb"
     },
     migrations: {
-      directory: "./api/db/migrations"
+      directory: "./db/migrations"
     },
     seeds: {
-      directory: "./api/db/seeds"
+      directory: "./db/seeds"
     }
   }
 };

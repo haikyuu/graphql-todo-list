@@ -5,23 +5,38 @@ const typeDefs = [
   `
   enum Priority {
     LOW
-      MEDIUM
-      HIGH
+    MEDIUM
+    HIGH
   }
   type Todo {
-  id: Int!
-        text: String!
-        priority: Priority
-        dueDate: Int #timestamp
+    id: String!
+    text: String!
+    priority: Priority
+    dueDate: String
   }
 
   type Query {
-  todos: [Todo]
-           todo(id: Int!): Todo
+    todos: [Todo]
+    todo(id: String!): Todo
   }
 
+  input AddTodoInput{
+    text: String!
+    priority: Priority
+    dueDate: String
+  }
+  input EditTodoInput{
+    text: String
+    priority: Priority
+    dueDate: String
+  }
+  type Mutation {
+    addTodo(todo: AddTodoInput!): String
+    editTodo(id: String!, todo: EditTodoInput): Todo
+  }
   schema {
-  query: Query
+    query: Query
+    mutation: Mutation
   }
 `
 ];
@@ -30,6 +45,10 @@ const resolvers = {
   Query: {
     todos: async (_, args, ctx) => Todo.loadAll(ctx, args),
     todo: async (_, args, ctx) => Todo.load(ctx, args)
+  },
+  Mutation: {
+    addTodo: async (_, args, ctx) => Todo.AddTodo(ctx, args),
+    editTodo: async (_, args, ctx) => Todo.EditTodo(ctx, args)
   }
 };
 
