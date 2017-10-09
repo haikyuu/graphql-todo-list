@@ -11,11 +11,22 @@ services:
       - 3000:3000
     links:
       - db:db
+  client:
+    build:
+      context: ./client
+    image: todolist-client
+    env_file: config.env
+    volumes:
+      - ./client:/usr/src/client
+    ports:
+      - 4000:3000
+    links:
+      - api:api
   db:
+    image: todolist-db
     build:
       context: ./db
     env_file: config.env
     image: todolist-db
     ports:
       - 5431:5432
-
