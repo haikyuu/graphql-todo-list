@@ -11,11 +11,23 @@ class todo {
       .where("id", id);
   }
 
-  static async getByIds(ids: Array<string>) {
+  static async getByIds(ids: Array<string>): Promise<Array<Todo>> {
     return db
       .select()
       .table("Todos")
-      .whereIn("id", ids);
+      .whereIn("id", ids)
+      .then(todos =>
+        ids.map(originalId => {
+          const todoInArray = todos.filter(({ id }) => id !== originalId);
+          //DataLoader must be constructed with a promise containing the same
+          //number of items (id->item)
+          if (todoInArray.length) {
+            return todoInArray[0];
+          } else {
+            return null;
+          }
+        })
+      );
   }
 
   static async getAll() {
