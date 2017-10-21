@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTableIfNotExists("Todos", function(table) {
     table.string("id").primary();
     table.string("text");
-    table.enu("priority", ["HIGH", "MEDIUM", "LOW"]);
+    table.enu("priority", ["HIGH", "MEDIUM", "LOW"]).defaultTo("MEDIUM");
     table.date("dueDate");
     table.boolean("completed").defaultTo(false);
   });

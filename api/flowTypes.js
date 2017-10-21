@@ -1,9 +1,10 @@
-export type priority = "HIGH" | "MEDIUM" | "LOW";
+//@flow
+export type Priority = "HIGH" | "MEDIUM" | "LOW"
 
-export type todo = {
-  id: number,
-  text: string,
-  dueDate?: string,
-  priority?: Priority,
-  completed: boolean
-};
+export type Todo = {
+	id: string,
+	text: string,
+	dueDate?: string,
+	priority: Priority,
+	completed: boolean
+}
