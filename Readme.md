@@ -4,6 +4,8 @@ This is a Todo app built using express, GraphQl, apollo-server, apollo-client an
 It showcases the use of Docker to setup a dockerized dev environment.
 Flow is used for static typing.
 
+![Screenshot](/screenshot.jpg?raw=true "Screenshot")
+
 Instructions
 =====
 - [Install Docker](https://www.docker.com)
