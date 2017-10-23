@@ -11,5 +11,7 @@ Instructions
 =====
 - [Install Docker](https://www.docker.com)
 - Run `docker-compose up`
+- Visit [localhost:3000/graphiql](http://localhost:3000/graphiql) for graphiql
+- Visit [localhost:4000](http://localhost:4000) to see the app
 
-Proud of the design™ 😎
+Proud of my hand-made design™ 😎
