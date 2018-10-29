@@ -12,7 +12,7 @@
     "nodemon": "^1.12.1"
   },
   "scripts": {
-    "serve": "nodemon index.js --exec babel-node"
+    "serve": "./node_modules/.bin/knex migrate:latest && nodemon index.js --exec babel-node"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
