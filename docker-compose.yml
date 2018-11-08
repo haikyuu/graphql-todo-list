@@ -11,6 +11,8 @@ services:
       - 3000:3000
     links:
       - db:db
+    depends_on:
+      - db
   client:
     build:
       context: ./client
@@ -23,6 +25,9 @@ services:
     links:
       - api:api
   db:
+    image: postgres:9.6.3
     env_file: config.env
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5431:5432
