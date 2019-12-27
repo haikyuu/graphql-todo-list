@@ -1,18 +1,17 @@
 module.exports = {
   development: {
-    client: "pg",
+    client: 'pg',
     connection: {
-      host: "localhost",
-      port: 5431,
-      user: "user",
-      password: "password",
-      database: "todolistdb"
+      host: process.env.DB_HOST,
+      user: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
     },
     migrations: {
-      directory: "./db/migrations"
+      directory: './db/migrations',
     },
     seeds: {
-      directory: "./db/seeds"
-    }
-  }
+      directory: './db/seeds',
+    },
+  },
 };
