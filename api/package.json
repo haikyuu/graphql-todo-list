@@ -22,7 +22,7 @@
     "graphql": "^0.11.7",
     "graphql-server-express": "^1.1.2",
     "graphql-tools": "^2.1.0",
-    "knex": "^0.13.0",
+    "knex": "^2.3.0",
     "pg": "^7.3.0",
     "uuid": "^3.1.0"
   }
